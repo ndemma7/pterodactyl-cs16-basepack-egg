@@ -30,7 +30,7 @@ Ready-to-use Pterodactyl egg for Counter-Strike 1.6 servers using [PluginyCS Bas
 
 ### 1. Import EGG to Pterodactyl
 
-1. Download `egg-counter-strike-1-6-basepack.json`
+1. Download `egg-counter--strike1-6--basepack.json`
 2. In Pterodactyl admin panel go to: **Nests** → **Import Egg**
 3. Select the JSON file and import
 
