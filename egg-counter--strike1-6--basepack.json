@@ -1,0 +1,144 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2025-12-30T03:29:39+01:00",
+    "name": "Counter-Strike 1.6 [BasePack]",
+    "author": "parker@parkervcp.com",
+    "description": "Ready-to-use Counter-Strike 1.6 server with PluginyCS BasePack including ReHLDS, ReGameDLL, ReAPI, Metamod-r and other essential modules.",
+    "features": [
+        "steam_disk_space"
+    ],
+    "docker_images": {
+        "ghcr.io\/parkervcp\/games:source": "ghcr.io\/parkervcp\/games:source"
+    },
+    "file_denylist": [],
+    "startup": ".\/start.sh -console -game {{HLDS_GAME}} -port {{SERVER_PORT}} -sport {{VAC_PORT}} +map {{SRCDS_MAP}} +ip 0.0.0.0 -strictportbind -norestart +maxplayers 32 -pingboost 1 +sys_ticrate 2000 +exec server.cfg +map de_dust2 -heapsize 65536 -num_edicts 4096 -condebug -master -conclearlog -secure -nobreakpad",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Connection to Steam servers successful\"\r\n}",
+        "logs": "{}",
+        "stop": "quit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# BasePack Installation Script\r\n# Server Files: \/mnt\/server\r\n\r\nGREEN='\\033[0;32m'\r\nRED='\\033[0;31m'\r\nYELLOW='\\033[0;33m'\r\nBLUE='\\033[0;34m'\r\nNC='\\033[0m'\r\n\r\napt-get update -qq\r\napt-get install -y unzip\r\n\r\nBASEPACK_URL=\"https:\/\/cdn.pluginycs.pl\/packages\/basepack_210.zip\"\r\nBASEPACK_GITHUB=\"https:\/\/github.com\/PluginyCS\/BasePack\/releases\/latest\"\r\nBASEPACK_VERSION=\"2.1.0\"\r\n\r\nmkdir -p \/mnt\/server\r\nchown -R $(whoami):$(whoami) \/mnt\/server\r\n\r\ncd \/mnt\/server\r\n\r\necho -e \"${NC}Downloading BasePack version${BLUE} ${BASEPACK_VERSION}${NC} from ${YELLOW}${BASEPACK_GITHUB}${NC}\"\r\ncurl -sSL -o basepack.zip ${BASEPACK_URL}\r\n\r\nif [[ $? -ne 0 ]]; then\r\n    echo -e \"${RED}Failed to download basepack.zip${NC}\"\r\n    exit 1\r\nfi\r\n\r\necho -e \"${BLUE}Extracting BasePack...${NC}\"\r\nunzip -oq basepack.zip -d \/mnt\/server\r\n\r\nif [[ $? -ne 0 ]]; then\r\n    echo -e \"${RED}Failed to extract basepack.zip${NC}\"\r\n    exit 1\r\nfi\r\n\r\nrm -f basepack.zip\r\n\r\nif [[ -f \/mnt\/server\/reunion.cfg ]]; then\r\n    echo -e \"${BLUE}Configuring reunion.cfg...${NC}\"\r\n    if [[ ! -z \"${REUNION_HASH_SALT}\" ]]; then\r\n        sed -i '\/^SteamIdHashSalt\/d' \/mnt\/server\/reunion.cfg\r\n        echo \"SteamIdHashSalt = ${REUNION_HASH_SALT}\" >> \/mnt\/server\/reunion.cfg\r\n        echo -e \"${GREEN}SteamIdHashSalt configured${NC}\"\r\n    else\r\n        echo -e \"${YELLOW}No REUNION_HASH_SALT provided, skipping...${NC}\"\r\n    fi\r\nelse\r\n    echo -e \"${YELLOW}reunion.cfg not found in BasePack${NC}\"\r\nfi\r\n\r\nmkdir -p \/mnt\/server\/cstrike\r\nif [[ ! -f \/mnt\/server\/cstrike\/server.cfg ]]; then\r\n    touch \/mnt\/server\/cstrike\/server.cfg\r\nfi\r\n\r\necho -e \"${RED}-----------------------------------------${NC}\"\r\necho -e \"${GREEN}Installation completed...${NC}\"\r\necho -e \"${BLUE}Thank you for using PluginyCS BasePack (ver. ${BASEPACK_VERSION})${NC}\"\r\necho -e \"${RED}-----------------------------------------${NC}\"",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Game ID",
+            "description": "The ID corresponding to the game to download and run using HLDS. The HLDS server ID is 90. This should not be changed.",
+            "env_variable": "SRCDS_APPID",
+            "default_value": "90",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|numeric|in:90",
+            "field_type": "text"
+        },
+        {
+            "name": "Game Name",
+            "description": "The name corresponding to the game to download and run using HLDS. All HLDS server names are here - https:\/\/developer.valvesoftware.com\/wiki\/Dedicated_Server_Name_Enumeration",
+            "env_variable": "HLDS_GAME",
+            "default_value": "cstrike",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|alpha_dash|between:1,100",
+            "field_type": "text"
+        },
+        {
+            "name": "Map",
+            "description": "The default map for the server.",
+            "env_variable": "SRCDS_MAP",
+            "default_value": "de_dust2",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|alpha_dash",
+            "field_type": "text"
+        },
+        {
+            "name": "VAC Port",
+            "description": "Specifies the VAC port the server should use. Default is 26900.",
+            "env_variable": "VAC_PORT",
+            "default_value": "26900",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric|digits_between:1,5",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Username",
+            "description": "Steam username (not required for BasePack).",
+            "env_variable": "STEAM_USER",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Password",
+            "description": "Steam password (not required for BasePack).",
+            "env_variable": "STEAM_PASS",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Steam Auth",
+            "description": "Steam authenticator code (not required for BasePack).",
+            "env_variable": "STEAM_AUTH",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Validate",
+            "description": "Validate game files during update (not used with BasePack).",
+            "env_variable": "VALIDATE",
+            "default_value": "0",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Auto Update",
+            "description": "Auto update on restart (not used with BasePack).",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "0",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Reunion Hash Salt",
+            "description": "32-character SteamIdHashSalt for reunion.cfg (recommended hex string). Generate with: openssl rand -hex 16",
+            "env_variable": "REUNION_HASH_SALT",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|size:32",
+            "field_type": "text"
+        },
+        {
+            "name": "Beta Branch",
+            "description": "Leave empty for the public branch (not used with BasePack).",
+            "env_variable": "SRCDS_BETAID",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "nullable|string|in:,steam_legacy",
+            "field_type": "text"
+        }
+    ]
+}
